@@ -4,16 +4,16 @@
 
 Object SKELD_OBJECTS[] = {
     {
-        .id = "room_cafeteria",
-        .position = {0}
-    },
-    {
         .id = "room_hallwaydown",
         .position = {414, 954}
     },
     {
         .id = "room_storage",
         .position = {81, 1246}
+    },
+    {
+        .id = "room_cafeteria",
+        .position = {0}
     }
 };
 
@@ -34,7 +34,7 @@ Scene LoadScene(Scene *scene) {
 
 void DrawScene(Scene scene) {
     for (int i = 0; i < scene.object_count; i++) {
-        DrawTextureEx(scene.objects[i].texture, scene.objects[i].position, 0, 1.0, WHITE);
+        DrawTextureEx(scene.objects[i].texture, scene.objects[i].position, 0, 1.0f, WHITE);
     }
 }
 

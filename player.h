@@ -7,6 +7,7 @@ typedef struct {
     int direction;
     float speed;
     bool moving;
+    Vector2 size;
 } Player;
 
 void UpdatePlayer(Player *player);

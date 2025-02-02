@@ -1,6 +1,7 @@
 #include <raylib.h>
 #include <math.h>
 #include "player.h"
+#include "collision.h"
 
 void UpdatePlayer(Player *player) {
     float time = GetFrameTime();
@@ -24,9 +25,29 @@ void UpdatePlayer(Player *player) {
 
     float magnitude = sqrtf(position.x * position.x + position.y * position.y);
     if (magnitude > 0) {
-        player->position.x += position.x / magnitude * player->speed * time * 100;
-        player->position.y += position.y / magnitude * player->speed * time * 100;
+        position.x = position.x / magnitude * player->speed * time * 100;
+        position.y = position.y / magnitude * player->speed * time * 100;
         player->moving = true;
+    }
+
+    if (!player->moving) return;
+
+    Vector2 old_position = player->position;
+    Vector2 new_position = {player->position.x + position.x, player->position.y + position.y};
+
+    player->position = new_position;
+    if (CheckCollision(*SKELD, player)) {
+        player->position = old_position;
+
+        player->position.x += position.x;
+        if (CheckCollision(*SKELD, player)) {
+            player->position.x = old_position.x;
+        }
+
+        player->position.y += position.y;
+        if (CheckCollision(*SKELD, player)) {
+            player->position.y = old_position.y;
+        }
     }
 }
 

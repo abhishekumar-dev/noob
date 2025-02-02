@@ -6,6 +6,6 @@ set(CMAKE_C_STANDARD 11)
 include_directories("${CMAKE_SOURCE_DIR}/raylib/include")
 link_directories("${CMAKE_SOURCE_DIR}/raylib/lib")
 
-add_executable(noob main.c scene.c animation.c player.c utils.c)
+add_executable(noob main.c scene.c animation.c player.c utils.c collision.c)
 
 target_link_libraries(noob raylib gdi32 winmm)
